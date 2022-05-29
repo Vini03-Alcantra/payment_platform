@@ -1,7 +1,10 @@
 package migrations
 
-import "gorm.io/gorm"
+import (
+	"github.com/hyperyuri/webapi-with-go/models"
+	"gorm.io/gorm"
+)
 
 func RunMigration(db *gorm.DB) {
-	db.AutoMigrate()
+	db.AutoMigrate(models.DebitCard{})
 }
