@@ -11,7 +11,7 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine {
 		debit := main.Group("debit")
 		{
 			debit.GET("/:id", controllers.ShowDebit)
-			debit.POST("/", controllers.)
+			debit.POST("/", controllers.CreateBook)
 		}
 	}
 	return router

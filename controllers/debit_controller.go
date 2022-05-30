@@ -36,3 +36,27 @@ func ShowDebit(c *gin.Context) {
 
 	c.JSON(200, debit)
 }
+
+func CreateBook(c *gin.Context) {
+	db := datatase.GetDatabase()
+
+	var p models.DebitCard
+
+	err := c.ShouldBindJSON(&p)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": "cannot bind JSON: " + err.Error(),
+		})
+		return
+	}
+
+	err = db.Create(&p).Error
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": "cannot create book: " + err.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, p)
+}
