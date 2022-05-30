@@ -10,6 +10,7 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine {
 	{
 		debit := main.Group("debit")
 		{
+			debit.GET("/", controllers.ShowAllDebits)
 			debit.GET("/:id", controllers.ShowDebit)
 			debit.POST("/", controllers.CreateBook)
 		}

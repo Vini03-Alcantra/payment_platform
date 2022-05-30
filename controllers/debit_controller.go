@@ -23,7 +23,7 @@ func ShowDebit(c *gin.Context) {
 
 	db := datatase.GetDatabase()
 
-	var debit models.DebitCard
+	var debit models.DebitValue
 	err = db.First(&debit, newid).Error
 
 	if err != nil {
@@ -40,7 +40,7 @@ func ShowDebit(c *gin.Context) {
 func CreateBook(c *gin.Context) {
 	db := datatase.GetDatabase()
 
-	var p models.DebitCard
+	var p models.DebitValue
 
 	err := c.ShouldBindJSON(&p)
 	if err != nil {
@@ -54,6 +54,22 @@ func CreateBook(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"error": "cannot create book: " + err.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, p)
+}
+
+func ShowAllDebits(c *gin.Context) {
+	db := datatase.GetDatabase()
+
+	var p []models.DebitValue
+	err := db.Find(&p).Error
+
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": "cannot find product by id: " + err.Error(),
 		})
 		return
 	}
