@@ -19,7 +19,7 @@ func StartDB() {
 	}
 
 	db = database
-
+	// migrations.RunMigration(db)
 	config, _ := db.DB()
 
 	config.SetMaxIdleConns(10)

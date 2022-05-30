@@ -6,5 +6,5 @@ import (
 )
 
 func RunMigration(db *gorm.DB) {
-	db.AutoMigrate(models.DebitCard{})
+	db.AutoMigrate(&models.DebitCard{})
 }
